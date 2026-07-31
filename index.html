@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vikways · ride smarter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    html { scroll-behavior: smooth; }
+    .bg-brand { background: #0b2b4a; }
+    .bg-brand-light { background: #1a3f5e; }
+    .text-brand { color: #f5b342; }
+    .border-brand { border-color: #f5b342; }
+    .card-shadow { box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .transition-all { transition: all 0.25s ease; }
+    .gradient-brand { background: linear-gradient(135deg, #0b2b4a 0%, #1a3f5e 100%); }
+    .hover-scale:hover { transform: scale(1.02); }
+    .bg-pattern {
+      background-image: radial-gradient(circle at 20% 50%, rgba(245, 179, 66, 0.05) 0%, transparent 50%);
+    }
+    .section-divider {
+      background: linear-gradient(to right, transparent, #f5b342, transparent);
+      height: 2px;
+      opacity: 0.2;
+    }
+    /* Extra left/right spacing for all sections */
+    .section-padding {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    @media (max-width: 640px) {
+      .section-padding {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased bg-gray-50 text-gray-800 font-sans">
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="bg-brand shadow-lg sticky top-0 z-50 border-b border-yellow-600/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-motorcycle text-brand text-2xl"></i>
+          <span class="text-white text-2xl font-extrabold tracking-tight">Vikways</span>
+          <span class="hidden sm:inline-block text-xs font-medium bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded-full ml-1">🚀 ride</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-7 text-sm font-medium">
+          <a href="#ride" class="text-gray-200 hover:text-white transition">Ride</a>
+          <a href="#features" class="text-gray-200 hover:text-white transition">Features</a>
+          <a href="#safety" class="text-gray-200 hover:text-white transition">Safety</a>
+          <a href="#cities" class="text-gray-200 hover:text-white transition">Cities</a>
+          <a href="#download" class="text-gray-200 hover:text-white transition">Download</a>
+          <button class="bg-brand text-white border border-yellow-400/60 px-4 py-1.5 rounded-full text-sm hover:bg-yellow-400 hover:text-brand transition-all font-medium">
+            <i class="fas fa-user-circle mr-1"></i> Sign in
+          </button>
+        </div>
+        <div class="md:hidden">
+          <button id="menuBtn" class="text-gray-200 hover:text-white text-xl focus:outline-none">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      <div id="mobileMenu" class="md:hidden hidden pb-4 border-t border-yellow-600/20 pt-3 text-sm">
+        <a href="#ride" class="block py-2 text-gray-200 hover:text-white transition"><i class="fas fa-chevron-right mr-2 text-yellow-400/70"></i>Ride</a>
+        <a href="#features" class="block py-2 text-gray-200 hover:text-white transition"><i class="fas fa-chevron-right mr-2 text-yellow-400/70"></i>Features</a>
+        <a href="#safety" class="block py-2 text-gray-200 hover:text-white transition"><i class="fas fa-chevron-right mr-2 text-yellow-400/70"></i>Safety</a>
+        <a href="#cities" class="block py-2 text-gray-200 hover:text-white transition"><i class="fas fa-chevron-right mr-2 text-yellow-400/70"></i>Cities</a>
+        <a href="#download" class="block py-2 text-gray-200 hover:text-white transition"><i class="fas fa-chevron-right mr-2 text-yellow-400/70"></i>Download</a>
+        <button class="mt-2 w-full bg-yellow-400 text-brand font-semibold py-1.5 rounded-full">Sign in</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section class="relative bg-brand overflow-hidden bg-pattern section-padding">
+    <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48cGF0aCBkPSJNMzAgMTBhMjAgMjAgMCAxIDAgMCA0MCAyMCAyMCAwIDAgMCAwLTQweiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjAuNSIvPjwvc3ZnPg==')]"></div>
+    <div class="max-w-7xl mx-auto py-16 md:py-24 relative z-10">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-yellow-400/10 text-yellow-300 px-4 py-1.5 rounded-full text-sm font-medium mb-4 border border-yellow-400/20">
+            <i class="fas fa-rocket"></i> Now in 100+ cities
+          </div>
+          <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+            <span class="text-brand">Vikways</span> <br class="hidden sm:block" /> 
+            <span class="text-white/90">your city, <br class="hidden sm:block" /> your ride.</span>
+          </h1>
+          <p class="text-gray-300 text-lg mt-4 max-w-md">
+            Bike taxis, autos, cabs &amp; parcel — all in one app. 
+            <span class="text-yellow-300 font-medium">#Vikways</span> makes every trip easy.
+          </p>
+          <div class="flex flex-wrap gap-3 mt-6">
+            <a href="#download" class="bg-yellow-400 hover:bg-yellow-300 text-brand font-bold px-6 py-3 rounded-full shadow-lg flex items-center gap-2 transition hover-scale">
+              <i class="fab fa-google-play"></i> Google Play
+            </a>
+            <a href="#download" class="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 px-6 py-3 rounded-full flex items-center gap-2 transition">
+              <i class="fab fa-apple"></i> App Store
+            </a>
+          </div>
+          <div class="flex items-center gap-6 mt-6 text-white/70 text-sm flex-wrap">
+            <span><i class="fas fa-check-circle text-green-400 mr-1"></i> 10M+ rides</span>
+            <span><i class="fas fa-star text-yellow-400 mr-1"></i> 4.6 rating</span>
+            <span><i class="fas fa-clock text-blue-400 mr-1"></i> 2 min avg</span>
+          </div>
+        </div>
+        <div class="flex justify-center md:justify-end">
+          <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/20 shadow-2xl w-full max-w-sm">
+            <div class="flex items-center gap-3 border-b border-white/10 pb-4">
+              <i class="fas fa-motorcycle text-4xl text-brand"></i>
+              <div>
+                <p class="text-white font-semibold text-lg">Vikways now</p>
+                <p class="text-gray-300 text-sm"><i class="fas fa-map-pin text-yellow-400 mr-1"></i> 2 min away</p>
+              </div>
+            </div>
+            <div class="mt-4 grid grid-cols-3 gap-2 text-center">
+              <div class="bg-white/10 p-2 rounded-xl"><i class="fas fa-bolt text-yellow-400 text-xl"></i><p class="text-white text-xs mt-1">Bike</p></div>
+              <div class="bg-white/10 p-2 rounded-xl"><i class="fas fa-car text-yellow-400 text-xl"></i><p class="text-white text-xs mt-1">Auto</p></div>
+              <div class="bg-white/10 p-2 rounded-xl"><i class="fas fa-box text-yellow-400 text-xl"></i><p class="text-white text-xs mt-1">Parcel</p></div>
+            </div>
+            <button class="mt-5 w-full bg-yellow-400 text-brand font-bold py-2.5 rounded-full hover:bg-yellow-300 transition hover-scale">
+              <i class="fas fa-arrow-right mr-2"></i> Book now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== HOW IT WORKS ====== -->
+  <section class="py-16 bg-white section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">how it works</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 text-brand">Ride in <span class="text-yellow-500">3 simple steps</span></h2>
+        <p class="text-gray-500 max-w-xl mx-auto mt-2">Book, ride, and go — it's that easy.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center group">
+          <div class="w-20 h-20 mx-auto bg-brand/10 rounded-2xl flex items-center justify-center text-brand text-3xl group-hover:bg-brand group-hover:text-white transition-all">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <h3 class="text-xl font-bold mt-4">1. Enter location</h3>
+          <p class="text-gray-500 text-sm">Set your pickup and drop-off points.</p>
+        </div>
+        <div class="text-center group">
+          <div class="w-20 h-20 mx-auto bg-brand/10 rounded-2xl flex items-center justify-center text-brand text-3xl group-hover:bg-brand group-hover:text-white transition-all">
+            <i class="fas fa-hand-pointer"></i>
+          </div>
+          <h3 class="text-xl font-bold mt-4">2. Choose ride</h3>
+          <p class="text-gray-500 text-sm">Pick from bike, auto, or cab options.</p>
+        </div>
+        <div class="text-center group">
+          <div class="w-20 h-20 mx-auto bg-brand/10 rounded-2xl flex items-center justify-center text-brand text-3xl group-hover:bg-brand group-hover:text-white transition-all">
+            <i class="fas fa-flag-checkered"></i>
+          </div>
+          <h3 class="text-xl font-bold mt-4">3. Ride & reach</h3>
+          <p class="text-gray-500 text-sm">Track your ride and reach safely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FEATURES ====== -->
+  <section id="features" class="py-16 bg-gray-50 section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">why Vikways</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 text-brand">Built for <span class="text-yellow-500">your convenience</span></h2>
+        <p class="text-gray-500 max-w-xl mx-auto mt-2">Everything you need for a seamless ride experience.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl card-shadow border border-gray-100 hover-scale transition-all">
+          <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-green-600 text-xl">
+            <i class="fas fa-tag"></i>
+          </div>
+          <h4 class="text-lg font-bold mt-3">Affordable fares</h4>
+          <p class="text-gray-500 text-sm">Transparent pricing with no surge surprises.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl card-shadow border border-gray-100 hover-scale transition-all">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 text-xl">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h4 class="text-lg font-bold mt-3">24/7 availability</h4>
+          <p class="text-gray-500 text-sm">Rides at any time, day or night.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl card-shadow border border-gray-100 hover-scale transition-all">
+          <div class="w-12 h-12 rounded-xl bg-yellow-100 flex items-center justify-center text-yellow-600 text-xl">
+            <i class="fas fa-route"></i>
+          </div>
+          <h4 class="text-lg font-bold mt-3">Live tracking</h4>
+          <p class="text-gray-500 text-sm">Real-time GPS tracking for complete visibility.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl card-shadow border border-gray-100 hover-scale transition-all">
+          <div class="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center text-red-600 text-xl">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h4 class="text-lg font-bold mt-3">24/7 support</h4>
+          <p class="text-gray-500 text-sm">Help is always just a tap away.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl card-shadow border border-gray-100 hover-scale transition-all">
+          <div class="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600 text-xl">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <h4 class="text-lg font-bold mt-3">Multiple payments</h4>
+          <p class="text-gray-500 text-sm">Cash, UPI, cards — pay your way.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl card-shadow border border-gray-100 hover-scale transition-all">
+          <div class="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center text-pink-600 text-xl">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h4 class="text-lg font-bold mt-3">Premium rides</h4>
+          <p class="text-gray-500 text-sm">Upgrade to premium cabs for extra comfort.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SAFETY ====== -->
+  <section id="safety" class="py-16 gradient-brand text-white section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">safety first</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2">Your safety is our <span class="text-yellow-400">priority</span></h2>
+        <p class="text-gray-300 max-w-xl mx-auto mt-2">We take every step to ensure you ride with peace of mind.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
+          <i class="fas fa-user-check text-yellow-400 text-3xl"></i>
+          <h4 class="text-xl font-bold mt-3">Verified captains</h4>
+          <p class="text-gray-300 text-sm">All captains are background-verified and trained.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
+          <i class="fas fa-shield-alt text-yellow-400 text-3xl"></i>
+          <h4 class="text-xl font-bold mt-3">SOS emergency</h4>
+          <p class="text-gray-300 text-sm">One-tap SOS button for immediate help.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
+          <i class="fas fa-phone-alt text-yellow-400 text-3xl"></i>
+          <h4 class="text-xl font-bold mt-3">24/7 support</h4>
+          <p class="text-gray-300 text-sm">Our support team is always ready to assist you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CITIES ====== -->
+  <section id="cities" class="py-16 bg-white section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">available now</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 text-brand">Ride in <span class="text-yellow-500">100+ cities</span></h2>
+        <p class="text-gray-500 max-w-xl mx-auto mt-2">From metros to towns, Vikways is everywhere.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+        <div class="bg-gray-50 p-4 rounded-xl text-center hover:bg-brand hover:text-white transition-all">
+          <i class="fas fa-city text-brand text-2xl group-hover:text-white"></i>
+          <p class="font-semibold mt-1">Delhi</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-xl text-center hover:bg-brand hover:text-white transition-all">
+          <i class="fas fa-city text-brand text-2xl"></i>
+          <p class="font-semibold mt-1">Mumbai</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-xl text-center hover:bg-brand hover:text-white transition-all">
+          <i class="fas fa-city text-brand text-2xl"></i>
+          <p class="font-semibold mt-1">Bengaluru</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-xl text-center hover:bg-brand hover:text-white transition-all">
+          <i class="fas fa-city text-brand text-2xl"></i>
+          <p class="font-semibold mt-1">Chennai</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-xl text-center hover:bg-brand hover:text-white transition-all">
+          <i class="fas fa-city text-brand text-2xl"></i>
+          <p class="font-semibold mt-1">Hyderabad</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-xl text-center hover:bg-brand hover:text-white transition-all">
+          <i class="fas fa-city text-brand text-2xl"></i>
+          <p class="font-semibold mt-1">Pune</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-xl text-center hover:bg-brand hover:text-white transition-all">
+          <i class="fas fa-city text-brand text-2xl"></i>
+          <p class="font-semibold mt-1">Kolkata</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-xl text-center hover:bg-brand hover:text-white transition-all">
+          <i class="fas fa-plus-circle text-brand text-2xl"></i>
+          <p class="font-semibold mt-1">More</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== STATS ====== -->
+  <section class="bg-brand-light py-12 section-padding">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
+      <div><i class="fas fa-users text-4xl text-yellow-400"></i><p class="text-2xl font-bold mt-2">12M+</p><p class="text-gray-300 text-sm">monthly users</p></div>
+      <div><i class="fas fa-motorcycle text-4xl text-yellow-400"></i><p class="text-2xl font-bold mt-2">1M+</p><p class="text-gray-300 text-sm">captains</p></div>
+      <div><i class="fas fa-star text-4xl text-yellow-400"></i><p class="text-2xl font-bold mt-2">4.7⭐</p><p class="text-gray-300 text-sm">average rating</p></div>
+      <div><i class="fas fa-route text-4xl text-yellow-400"></i><p class="text-2xl font-bold mt-2">5M+</p><p class="text-gray-300 text-sm">daily rides</p></div>
+    </div>
+  </section>
+
+  <!-- ====== TESTIMONIALS ====== -->
+  <section class="py-16 bg-white section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">testimonials</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 text-brand">What our <span class="text-yellow-500">riders say</span></h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-gray-50 p-6 rounded-2xl card-shadow">
+          <div class="flex text-yellow-400 text-sm mb-2">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-600 text-sm">"Vikways is my go-to for daily commute. Super fast and reliable!"</p>
+          <div class="flex items-center gap-3 mt-4">
+            <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center text-brand font-bold">AK</div>
+            <div><p class="font-semibold text-sm">Amit K.</p><p class="text-xs text-gray-400">Delhi</p></div>
+          </div>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-2xl card-shadow">
+          <div class="flex text-yellow-400 text-sm mb-2">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-600 text-sm">"Love the safety features and the captains are always polite."</p>
+          <div class="flex items-center gap-3 mt-4">
+            <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center text-brand font-bold">SR</div>
+            <div><p class="font-semibold text-sm">Priya S.</p><p class="text-xs text-gray-400">Mumbai</p></div>
+          </div>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-2xl card-shadow">
+          <div class="flex text-yellow-400 text-sm mb-2">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-600 text-sm">"Affordable and always on time. Best ride-hailing app in India."</p>
+          <div class="flex items-center gap-3 mt-4">
+            <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center text-brand font-bold">RJ</div>
+            <div><p class="font-semibold text-sm">Rahul J.</p><p class="text-xs text-gray-400">Bengaluru</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== DOWNLOAD ====== -->
+  <section id="download" class="py-16 section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="gradient-brand rounded-4xl p-8 md:p-12 text-white relative overflow-hidden shadow-2xl">
+        <div class="absolute -right-20 -top-20 opacity-10 text-9xl"><i class="fas fa-mobile-alt"></i></div>
+        <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="inline-block bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">download now</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2">Get the Vikways app</h2>
+            <p class="text-yellow-200 text-lg mt-2">Ride smarter, faster, and safer.</p>
+            <div class="flex flex-wrap gap-4 mt-6">
+              <a href="#" class="bg-black/30 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-2xl flex items-center gap-3 hover:bg-black/40 transition hover-scale">
+                <i class="fab fa-google-play text-2xl"></i>
+                <div><p class="text-xs text-gray-300">GET IT ON</p><p class="font-semibold">Google Play</p></div>
+              </a>
+              <a href="#" class="bg-black/30 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-2xl flex items-center gap-3 hover:bg-black/40 transition hover-scale">
+                <i class="fab fa-apple text-2xl"></i>
+                <div><p class="text-xs text-gray-300">Download on the</p><p class="font-semibold">App Store</p></div>
+              </a>
+            </div>
+            <div class="mt-4 flex items-center gap-4 text-sm text-gray-200 flex-wrap">
+              <span><i class="fas fa-qrcode mr-2 text-yellow-300"></i>Scan to download</span>
+              <span><i class="fas fa-wifi mr-2 text-yellow-300"></i>Available on all networks</span>
+            </div>
+          </div>
+          <div class="flex justify-center md:justify-end">
+            <div class="bg-white/10 backdrop-blur p-4 rounded-3xl border border-white/20">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='200' viewBox='0 0 120 200'%3E%3Crect width='120' height='200' rx='24' fill='%231a1a2e'/%3E%3Crect x='12' y='12' width='96' height='160' rx='12' fill='%23222'/%3E%3Ccircle cx='60' cy='50' r='24' fill='%23f5b342'/%3E%3Crect x='30' y='90' width='60' height='8' rx='4' fill='%23555'/%3E%3Crect x='30' y='110' width='45' height='8' rx='4' fill='%23444'/%3E%3Crect x='30' y='130' width='55' height='8' rx='4' fill='%23444'/%3E%3Ccircle cx='60' cy='180' r='6' fill='%23444'/%3E%3C/svg%3E" 
+                   alt="app preview" class="w-32 h-auto mx-auto rounded-2xl shadow-xl" />
+              <p class="text-center text-xs text-yellow-200 mt-2">Vikways app</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section class="py-16 bg-white section-padding">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">faq</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 text-brand">Frequently asked <span class="text-yellow-500">questions</span></h2>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-gray-50 p-5 rounded-xl border border-gray-100">
+          <h4 class="font-bold text-brand">How do I book a ride?</h4>
+          <p class="text-gray-600 text-sm mt-1">Simply open the app, enter your pickup and drop-off locations, choose your ride type, and confirm booking.</p>
+        </div>
+        <div class="bg-gray-50 p-5 rounded-xl border border-gray-100">
+          <h4 class="font-bold text-brand">Is Vikways available in my city?</h4>
+          <p class="text-gray-600 text-sm mt-1">Vikways is available in 100+ cities across India. Check the app to see if your city is covered.</p>
+        </div>
+        <div class="bg-gray-50 p-5 rounded-xl border border-gray-100">
+          <h4 class="font-bold text-brand">What payment options are available?</h4>
+          <p class="text-gray-600 text-sm mt-1">We accept cash, UPI, credit/debit cards, and wallet payments for your convenience.</p>
+        </div>
+        <div class="bg-gray-50 p-5 rounded-xl border border-gray-100">
+          <h4 class="font-bold text-brand">How does Vikways ensure safety?</h4>
+          <p class="text-gray-600 text-sm mt-1">All captains are verified, rides are GPS-tracked, and we have a 24/7 SOS button for emergencies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="bg-brand text-gray-300 border-t border-yellow-600/20 section-padding">
+    <div class="max-w-7xl mx-auto py-12 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-2"><i class="fas fa-motorcycle text-brand text-2xl"></i><span class="text-white text-xl font-bold">Vikways</span></div>
+        <p class="text-sm mt-2 text-gray-400">Ride, auto, cab &amp; parcel — all in one.</p>
+        <div class="flex gap-3 mt-4 text-xl">
+          <a href="#" class="hover:text-yellow-400 transition"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-yellow-400 transition"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-yellow-400 transition"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="hover:text-yellow-400 transition"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+      <div>
+        <h6 class="text-white font-semibold">Company</h6>
+        <ul class="mt-2 space-y-1 text-sm">
+          <li class="hover:text-white transition cursor-pointer">About</li>
+          <li class="hover:text-white transition cursor-pointer">Careers</li>
+          <li class="hover:text-white transition cursor-pointer">Press</li>
+          <li class="hover:text-white transition cursor-pointer">Blog</li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="text-white font-semibold">Support</h6>
+        <ul class="mt-2 space-y-1 text-sm">
+          <li class="hover:text-white transition cursor-pointer">Help centre</li>
+          <li class="hover:text-white transition cursor-pointer">Safety</li>
+          <li class="hover:text-white transition cursor-pointer">Terms</li>
+          <li class="hover:text-white transition cursor-pointer">Privacy</li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="text-white font-semibold">Download</h6>
+        <ul class="mt-2 space-y-1 text-sm">
+          <li class="hover:text-white transition cursor-pointer">Android</li>
+          <li class="hover:text-white transition cursor-pointer">iOS</li>
+          <li class="hover:text-white transition cursor-pointer">Web</li>
+          <li class="hover:text-white transition cursor-pointer">QR code</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-yellow-600/10 py-4 text-center text-xs text-gray-500 max-w-7xl mx-auto">
+      &copy; 2026 Vikways · ride smarter.
+    </div>
+  </footer>
+
+  <!-- ====== JAVASCRIPT ====== -->
+  <script>
+    (function() {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mobileMenu.classList.toggle('hidden');
+          const icon = menuBtn.querySelector('i');
+          if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+          }
+        });
+
+        const links = mobileMenu.querySelectorAll('a');
+        links.forEach(link => {
+          link.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+            const icon = menuBtn.querySelector('i');
+            if (icon) {
+              icon.classList.add('fa-bars');
+              icon.classList.remove('fa-times');
+            }
+          });
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+
+    // Book now alerts
+    document.querySelectorAll('.bg-yellow-400.text-brand.font-bold.py-2.5.rounded-full, .bg-yellow-400.text-brand.font-bold.px-6.py-3.rounded-full.shadow-lg').forEach(btn => {
+      btn?.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('🚀 Vikways booking — ride now!');
+      });
+    });
+  </script>
+
+</body>
+</html>
