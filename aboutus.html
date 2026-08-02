@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vikways — About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { display: ['Manrope', 'sans-serif'], body: ['DM Sans', 'sans-serif'] }, colors: { limevik: '#cbff31' } } } }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .section-pad {
+            padding-top: 100px;
+        }
+
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            font-weight: 700;
+            padding-bottom: 4px;
+            transition: color 0.2s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #cbff31;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #111;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #111;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-overlay {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        .mobile-menu-panel {
+            background: white;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu-panel a {
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu-panel a:hover {
+            color: #cbff31;
+            transform: translateX(6px);
+        }
+
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 28px;
+            padding: 4px 0;
+        }
+
+        .menu-icon span {
+            display: block;
+            height: 2.5px;
+            background: #111;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .value-card {
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .team-card {
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+        }
+
+        .contact-input:focus {
+            border-color: #cbff31;
+            box-shadow: 0 0 0 3px rgba(203, 255, 49, 0.3);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-[#080808] selection:bg-limevik">
+
+    <!-- ===== HEADER (same as main page) ===== -->
+    <header class="fixed-header">
+        <nav class="mx-auto flex max-w-[1380px] items-center justify-between px-5 py-4 md:px-12">
+            <a href="index.html"
+                class="flex items-center gap-2 font-display text-2xl font-extrabold tracking-tight"><span
+                    class="grid h-8 w-8 place-items-center rounded-full bg-limevik text-sm">V</span>vikways</a>
+            <div class="hidden gap-8 text-sm md:flex">
+                <a href="ride.html" class="nav-link">Ride with us</a>
+                <a href="drive.html" class="nav-link">Drive with us</a>
+                <a href="index.html#safety" class="nav-link">Safety</a>
+                <a href="aboutus.html" class="nav-link active">About us</a>
+                <a href="contactus.html" class="nav-link">Contact us</a>
+            </div>
+            <div class="hidden items-center gap-4 md:flex"><a href="index.html#book"
+                    class="rounded-full bg-black px-5 py-3 text-sm font-bold text-white">Get started</a></div>
+            <button id="menuButton" class="md:hidden p-2 rounded-lg hover:bg-black/5 transition-colors"
+                aria-label="Toggle menu">
+                <div class="menu-icon" id="menuIcon">
+                    <span></span><span></span><span></span>
+                </div>
+            </button>
+        </nav>
+        <div id="mobileMenu" class="hidden md:hidden mobile-menu-overlay fixed inset-0 top-[73px] z-40">
+            <div class="mobile-menu-panel mx-4 mt-2 p-6">
+                <div class="space-y-1">
+                    <a class="block py-3 px-4 rounded-xl font-bold text-lg hover:bg-limevik/10 transition-all"
+                        href="ride.html"> Ride with us</a>
+                    <a class="block py-3 px-4 rounded-xl font-bold text-lg hover:bg-limevik/10 transition-all"
+                        href="drive.html"> Drive with us</a>
+                    <a class="block py-3 px-4 rounded-xl font-bold text-lg hover:bg-limevik/10 transition-all"
+                        href="index.html#safety"> Safety</a>
+                    <a class="block py-3 px-4 rounded-xl font-bold text-lg bg-limevik/20 transition-all"
+                        href="aboutus.html">About us</a>
+                    <a class="block py-3 px-4 rounded-xl font-bold text-lg hover:bg-limevik/10 transition-all"
+                        href="contactus.html">Contact us</a>
+                </div>
+                <div class="mt-6 pt-6 border-t border-[#e5e5e0]">
+                    <a href="index.html#book"
+                        class="block w-full text-center rounded-full bg-black px-5 py-4 font-bold text-white hover:bg-limevik hover:text-black transition-colors">Get
+                        started →</a>
+                </div>
+                <div class="mt-4 flex justify-center gap-6 text-xs text-[#888]">
+                    <a href="#" class="hover:text-black">Privacy</a>
+                    <a href="#" class="hover:text-black">Terms</a>
+                    <a href="#" class="hover:text-black">Support</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="section-pad">
+
+        <!-- ===== ABOUT US PAGE ===== -->
+        <section id="about-page" class="mx-auto max-w-[1380px] px-5 py-12 md:px-12">
+
+            <!-- Hero -->
+            <div class="mb-16 text-center">
+                <span
+                    class="inline-block rounded-full bg-limevik px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-black">About
+                    Vikways</span>
+                <h1 class="mt-6 font-display text-5xl font-extrabold tracking-tight md:text-7xl">We're
+                    rethinking<br><span class="text-[#7e7e79]">how cities move.</span></h1>
+                <p class="mx-auto mt-6 max-w-2xl text-lg text-[#565650]">Vikways was born from a simple belief: getting
+                    around your city should be easy, fair, and kind. We're building the mobility platform that puts
+                    people first.</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="mb-20 grid grid-cols-2 gap-6 rounded-2xl bg-black p-8 text-white sm:grid-cols-4 md:p-12">
+                <div class="text-center">
+                    <div class="font-display text-3xl font-extrabold text-limevik md:text-4xl">2M+</div>
+                    <p class="mt-1 text-sm text-[#c6c6c0]">Rides completed</p>
+                </div>
+                <div class="text-center">
+                    <div class="font-display text-3xl font-extrabold text-limevik md:text-4xl">50K+</div>
+                    <p class="mt-1 text-sm text-[#c6c6c0]">Partner drivers</p>
+                </div>
+                <div class="text-center">
+                    <div class="font-display text-3xl font-extrabold text-limevik md:text-4xl">4.8★</div>
+                    <p class="mt-1 text-sm text-[#c6c6c0]">Average rating</p>
+                </div>
+                <div class="text-center">
+                    <div class="font-display text-3xl font-extrabold text-limevik md:text-4xl">24/7</div>
+                    <p class="mt-1 text-sm text-[#c6c6c0]">On the move</p>
+                </div>
+            </div>
+
+            <!-- Our Story -->
+            <div class="mb-20 grid gap-12 lg:grid-cols-2 lg:gap-16">
+                <div>
+                    <p class="font-mono text-xs font-bold uppercase tracking-[.18em] text-[#6b6b66]">Our story</p>
+                    <h2 class="mt-4 font-display text-4xl font-extrabold tracking-tight md:text-5xl">Built in
+                        India,<br>for every city.</h2>
+                    <p class="mt-6 text-[#565650] leading-relaxed">What started as a small team with a big idea in 2020
+                        has grown into a movement. We saw that traditional transportation wasn't keeping up with the
+                        pace of modern life — so we built something better.</p>
+                    <p class="mt-4 text-[#565650] leading-relaxed">Today, Vikways connects millions of riders with
+                        trusted drivers across India. We're proud to be creating jobs, reducing traffic, and making
+                        cities more livable.</p>
+                    <div class="mt-8 flex items-center gap-4">
+                        <div class="h-12 w-12 rounded-full bg-limevik flex items-center justify-center text-2xl">✦</div>
+                        <div>
+                            <div class="font-bold">100% electric fleet by 2028</div>
+                            <div class="text-sm text-[#686863]">Our commitment to a greener future</div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="relative rounded-2xl overflow-hidden bg-[#f0f0eb] min-h-[300px] flex items-center justify-center">
+                    <div class="text-center p-8">
+                        <div class="text-7xl mb-4">🌆</div>
+                        <div class="font-display text-2xl font-extrabold">Vikways HQ</div>
+                        <div class="text-sm text-[#686863]">Bengaluru, India</div>
+                        <div class="mt-4 flex justify-center gap-2">
+                            <span class="inline-block h-2 w-2 rounded-full bg-limevik"></span>
+                            <span class="inline-block h-2 w-2 rounded-full bg-limevik/40"></span>
+                            <span class="inline-block h-2 w-2 rounded-full bg-limevik/40"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Values -->
+            <div class="mb-20">
+                <div class="text-center mb-12">
+                    <p class="font-mono text-xs font-bold uppercase tracking-[.18em] text-[#6b6b66]">What we believe</p>
+                    <h2 class="mt-4 font-display text-4xl font-extrabold tracking-tight md:text-5xl">Our values</h2>
+                </div>
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="value-card rounded-2xl bg-[#f8f8f5] p-8 text-center">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h3 class="font-display text-xl font-extrabold">Trust first</h3>
+                        <p class="mt-2 text-sm text-[#565650]">We build every feature with safety and transparency at
+                            its core.</p>
+                    </div>
+                    <div class="value-card rounded-2xl bg-[#f8f8f5] p-8 text-center">
+                        <div class="text-4xl mb-4">⚡</div>
+                        <h3 class="font-display text-xl font-extrabold">Move fast</h3>
+                        <p class="mt-2 text-sm text-[#565650]">Speed matters — whether it's a ride or a new feature, we
+                            deliver.</p>
+                    </div>
+                    <div class="value-card rounded-2xl bg-[#f8f8f5] p-8 text-center">
+                        <div class="text-4xl mb-4">🌱</div>
+                        <h3 class="font-display text-xl font-extrabold">Sustainable</h3>
+                        <p class="mt-2 text-sm text-[#565650]">We're committed to reducing emissions and building a
+                            greener city.</p>
+                    </div>
+                    <div class="value-card rounded-2xl bg-[#f8f8f5] p-8 text-center">
+                        <div class="text-4xl mb-4">❤️</div>
+                        <h3 class="font-display text-xl font-extrabold">People first</h3>
+                        <p class="mt-2 text-sm text-[#565650]">From riders to drivers to employees — everyone matters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+ 
+
+        </section>
+
+        <!-- ===== CONTACT US PAGE ===== -->
+        <section id="contact-page" class="bg-[#f8f8f5] py-16 md:py-24">
+            <div class="mx-auto max-w-[1380px] px-5 md:px-12">
+                <div class="text-center mb-12">
+                    <span
+                        class="inline-block rounded-full bg-limevik px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-black">Get
+                        in touch</span>
+                    <h2 class="mt-6 font-display text-5xl font-extrabold tracking-tight md:text-6xl">We'd love to
+                        hear<br>from you.</h2>
+                    <p class="mx-auto mt-4 max-w-xl text-[#565650]">Have a question, feedback, or partnership idea?
+                        Reach out — we're here to help.</p>
+                </div>
+
+                <div class="grid gap-12 lg:grid-cols-5">
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-3">
+                        <form class="rounded-2xl bg-white p-8 shadow-sm md:p-10">
+                            <div class="grid gap-6 sm:grid-cols-2">
+                                <div>
+                                    <label class="block text-sm font-bold mb-2">First name</label>
+                                    <input type="text"
+                                        class="contact-input w-full rounded-xl border border-[#e0e0db] px-4 py-3 outline-none transition"
+                                        placeholder="Aisha">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold mb-2">Last name</label>
+                                    <input type="text"
+                                        class="contact-input w-full rounded-xl border border-[#e0e0db] px-4 py-3 outline-none transition"
+                                        placeholder="Kumar">
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <label class="block text-sm font-bold mb-2">Email address</label>
+                                <input type="email"
+                                    class="contact-input w-full rounded-xl border border-[#e0e0db] px-4 py-3 outline-none transition"
+                                    placeholder="you@example.com">
+                            </div>
+                            <div class="mt-6">
+                                <label class="block text-sm font-bold mb-2">Subject</label>
+                                <select
+                                    class="contact-input w-full rounded-xl border border-[#e0e0db] px-4 py-3 outline-none transition bg-white">
+                                    <option>General inquiry</option>
+                                    <option>Partnership</option>
+                                    <option>Support</option>
+                                    <option>Feedback</option>
+                                    <option>Careers</option>
+                                </select>
+                            </div>
+                            <div class="mt-6">
+                                <label class="block text-sm font-bold mb-2">Message</label>
+                                <textarea rows="4"
+                                    class="contact-input w-full rounded-xl border border-[#e0e0db] px-4 py-3 outline-none transition"
+                                    placeholder="Tell us how we can help..."></textarea>
+                            </div>
+                            <button type="submit"
+                                class="mt-6 w-full rounded-xl bg-black py-4 font-bold text-white hover:bg-limevik hover:text-black transition-colors">Send
+                                message →</button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <div class="rounded-2xl bg-white p-8 shadow-sm">
+                            <div class="flex items-start gap-4">
+                                <div class="mt-1 text-2xl">📍</div>
+                                <div>
+                                    <h4 class="font-bold">Visit us</h4>
+                                    <p class="mt-1 text-sm text-[#565650]">Vikways Mobility Pvt. Ltd.<br>Indiranagar,
+                                        Bengaluru<br>Karnataka 560038</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl bg-white p-8 shadow-sm">
+                            <div class="flex items-start gap-4">
+                                <div class="mt-1 text-2xl">📧</div>
+                                <div>
+                                    <h4 class="font-bold">Email us</h4>
+                                    <p class="mt-1 text-sm text-[#565650]">hello@vikways.com<br>support@vikways.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl bg-white p-8 shadow-sm">
+                            <div class="flex items-start gap-4">
+                                <div class="mt-1 text-2xl">📞</div>
+                                <div>
+                                    <h4 class="font-bold">Call us</h4>
+                                    <p class="mt-1 text-sm text-[#565650]">+91 80 1234 5678<br>Mon–Sat, 9 AM – 9 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl bg-black p-8 text-white">
+                            <div class="flex items-center gap-3">
+                                <span class="inline-block h-3 w-3 rounded-full bg-limevik animate-pulse"></span>
+                                <span class="text-sm font-bold">We respond within 24 hours</span>
+                            </div>
+                            <p class="mt-2 text-xs text-[#c6c6c0]">Our team is ready to assist you.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER (same as main page) ===== -->
+    <footer class="mx-auto max-w-[1380px] px-5 py-12 md:px-12">
+        <div class="flex flex-col justify-between gap-8 border-b border-[#d8d8d2] pb-10 md:flex-row">
+            <div><b class="font-display text-4xl font-extrabold tracking-tight">vikways</b>
+                <p class="mt-2 text-sm text-[#686863]">A kinder way to move through the city.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-x-12 gap-y-3 text-sm font-bold">
+                <a href="ride.html" class="hover:underline">Ride with us</a>
+                <a href="drive.html" class="hover:underline">Drive with us</a>
+                <a href="index.html#safety" class="hover:underline">Safety</a>
+                <a href="aboutus.html" class="underline">About us</a>
+                <a href="contactus.html" class="hover:underline">Contact</a>
+            </div>
+        </div>
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-2 text-xs text-[#686863]">
+            <span>© 2026 Vikways All Rights Reserved. Powered By VSpaze Technologies Pvt. Ltd. — Official</span>
+            <span class="flex gap-4"><a href="#" class="hover:underline">Privacy</a><a href="#"
+                    class="hover:underline">Terms</a><a href="#" class="hover:underline">Support</a></span>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        menuButton.onclick = () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('active');
+        };
+
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.onclick = () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('active');
+            };
+        });
+
+        // Simple form handler (prevent default)
+        document.querySelector('form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thanks for reaching out! We\'ll get back to you soon.');
+        });
+    </script>
+</body>
+
+</html>

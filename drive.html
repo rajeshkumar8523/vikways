@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vikways — Drive with us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { display: ['Manrope', 'sans-serif'], body: ['DM Sans', 'sans-serif'] }, colors: { limevik: '#cbff31' } } } }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .section-pad {
+            padding-top: 100px;
+        }
+
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            font-weight: 700;
+            padding-bottom: 4px;
+            transition: color 0.2s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #cbff31;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #111;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #111;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-overlay {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        .mobile-menu-panel {
+            background: white;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu-panel a {
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu-panel a:hover {
+            color: #cbff31;
+            transform: translateX(6px);
+        }
+
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 28px;
+            padding: 4px 0;
+        }
+
+        .menu-icon span {
+            display: block;
+            height: 2.5px;
+            background: #111;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-icon.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .benefit-card {
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #111;
+            color: #cbff31;
+            font-weight: 800;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .earnings-card {
+            transition: all 0.3s ease;
+        }
+
+        .earnings-card:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-[#080808] selection:bg-limevik">
+
+    <!-- ===== HEADER ===== -->
+    <header class="fixed-header">
+        <nav class="mx-auto flex max-w-[1380px] items-center justify-between px-5 py-4 md:px-12">
+            <a href="index.html"
+                class="flex items-center gap-2 font-display text-2xl font-extrabold tracking-tight"><span
+                    class="grid h-8 w-8 place-items-center rounded-full bg-limevik text-sm">V</span>vikways</a>
+            <div class="hidden gap-8 text-sm md:flex">
+                <a href="ride.html" class="nav-link">Ride with us</a>
+                <a href="drive.html" class="nav-link active">Drive with us</a>
+                <a href="index.html#safety" class="nav-link">Safety</a>
+                <a href="about.html" class="nav-link">About us</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hidden items-center gap-4 md:flex"><a href="#apply"
+                    class="rounded-full bg-black px-5 py-3 text-sm font-bold text-white">Apply now</a></div>
+            <button id="menuButton" class="md:hidden p-2 rounded-lg hover:bg-black/5 transition-colors"
+                aria-label="Toggle menu">
+                <div class="menu-icon" id="menuIcon">
+                    <span></span><span></span><span></span>
+                </div>
+            </button>
+        </nav>
+        <div id="mobileMenu" class="hidden md:hidden mobile-menu-overlay fixed inset-0 top-[73px] z-40">
+            <div class="mobile-menu-panel mx-4 mt-2 p-6">
+                <div class="space-y-1">
+                    <a class="block py-3 px-4 rounded-xl font-bold text-lg hover:bg-limevik/10 transition-all"
+                        href="ride.html">Ride with us</a>
+                    <a class="block py-3 px-4 rounded-xl font-bold text-lg bg-limevik/20 transition-all"
+                        href="drive.html"> Drive with us</a>
+                    <a class="block py-3 px-4 rounded-xl font-bold text-lg hover:bg-limevik/10 transition-all"
+                        href="index.html#safety"> Safety</a>
+                    <a class="block py-3 px-4 rounded-xl font-bold text-lg hover:bg-limevik/10 transition-all"
+                        href="aboutus.html"> About us</a>
+                    <a class="block py-3 px-4 rounded-xl font-bold text-lg hover:bg-limevik/10 transition-all"
+                        href="contactus.html"> Contact</a>
+                </div>
+                <div class="mt-6 pt-6 border-t border-[#e5e5e0]">
+                    <a href="#apply"
+                        class="block w-full text-center rounded-full bg-black px-5 py-4 font-bold text-white hover:bg-limevik hover:text-black transition-colors">Apply
+                        now →</a>
+                </div>
+                <div class="mt-4 flex justify-center gap-6 text-xs text-[#888]">
+                    <a href="#" class="hover:text-black">Privacy</a>
+                    <a href="#" class="hover:text-black">Terms</a>
+                    <a href="#" class="hover:text-black">Support</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="section-pad">
+
+        <!-- ===== DRIVE WITH US PAGE ===== -->
+        <section class="mx-auto max-w-[1380px] px-5 py-12 md:px-12">
+
+            <!-- Hero -->
+            <div class="mb-16 text-center">
+                <span
+                    class="inline-block rounded-full bg-limevik px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-black">Drive
+                    with us</span>
+                <h1 class="mt-6 font-display text-5xl font-extrabold tracking-tight md:text-7xl">Your road.<br><span
+                        class="text-[#7e7e79]">Your rhythm.</span></h1>
+                <p class="mx-auto mt-6 max-w-2xl text-lg text-[#565650]">Drive with Vikways and make space for what
+                    matters. Set your own hours, earn weekly, and be part of a community that values you.</p>
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <a href="#apply"
+                        class="rounded-full bg-black px-6 py-4 font-bold text-white hover:bg-limevik hover:text-black transition-colors">Apply
+                        now →</a>
+                    <a href="#benefits"
+                        class="rounded-full border-2 border-black px-6 py-4 font-bold hover:bg-black hover:text-white transition-colors">See
+                        benefits</a>
+                </div>
+            </div>
+
+            <!-- Earnings Preview -->
+            <div class="mb-20 grid gap-6 md:grid-cols-3">
+                <div class="earnings-card rounded-2xl bg-black p-8 text-white text-center">
+                    <p class="text-sm text-[#c6c6c0]">Average weekly earnings</p>
+                    <div class="mt-2 font-display text-5xl font-extrabold text-limevik">₹8,420</div>
+                    <p class="mt-2 text-sm text-[#c6c6c0]">+14% from last week</p>
+                </div>
+                <div class="earnings-card rounded-2xl bg-[#f8f8f5] p-8 text-center">
+                    <p class="text-sm text-[#686863]">Active drivers</p>
+                    <div class="mt-2 font-display text-4xl font-extrabold">50K+</div>
+                    <p class="mt-2 text-sm text-[#686863]">Across 25+ cities</p>
+                </div>
+                <div class="earnings-card rounded-2xl bg-[#f8f8f5] p-8 text-center">
+                    <p class="text-sm text-[#686863]">Average rating</p>
+                    <div class="mt-2 font-display text-4xl font-extrabold">4.8★</div>
+                    <p class="mt-2 text-sm text-[#686863]">From 2M+ rides</p>
+                </div>
+            </div>
+
+            <!-- Benefits -->
+            <div id="benefits" class="mb-20">
+                <div class="text-center mb-12">
+                    <p class="font-mono text-xs font-bold uppercase tracking-[.18em] text-[#6b6b66]">Why drive with us
+                    </p>
+                    <h2 class="mt-4 font-display text-4xl font-extrabold tracking-tight md:text-5xl">Built for
+                        drivers,<br>by drivers.</h2>
+                </div>
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <div class="benefit-card rounded-2xl bg-white p-8 border border-[#e5e5e0]">
+                        <div class="text-4xl mb-4">⏰</div>
+                        <h3 class="font-display text-xl font-extrabold">Flexible hours</h3>
+                        <p class="mt-2 text-sm text-[#565650]">Drive when you want — morning, evening, or weekends.
+                            You're in control of your schedule.</p>
+                    </div>
+                    <div class="benefit-card rounded-2xl bg-white p-8 border border-[#e5e5e0]">
+                        <div class="text-4xl mb-4">💰</div>
+                        <h3 class="font-display text-xl font-extrabold">Weekly payouts</h3>
+                        <p class="mt-2 text-sm text-[#565650]">Get paid every week with transparent earnings statements.
+                            No hidden fees or delays.</p>
+                    </div>
+                    <div class="benefit-card rounded-2xl bg-white p-8 border border-[#e5e5e0]">
+                        <div class="text-4xl mb-4">🛡️</div>
+                        <h3 class="font-display text-xl font-extrabold">Insurance & safety</h3>
+                        <p class="mt-2 text-sm text-[#565650]">Comprehensive insurance coverage and 24/7 safety support
+                            for every trip.</p>
+                    </div>
+                    <div class="benefit-card rounded-2xl bg-white p-8 border border-[#e5e5e0]">
+                        <div class="text-4xl mb-4">📱</div>
+                        <h3 class="font-display text-xl font-extrabold">Driver app</h3>
+                        <p class="mt-2 text-sm text-[#565650]">Easy-to-use app with real-time navigation, earnings
+                            tracking, and ride management.</p>
+                    </div>
+                    <div class="benefit-card rounded-2xl bg-white p-8 border border-[#e5e5e0]">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h3 class="font-display text-xl font-extrabold">Community support</h3>
+                        <p class="mt-2 text-sm text-[#565650]">Join a community of drivers. Get help, share tips, and
+                            grow together.</p>
+                    </div>
+                    <div class="benefit-card rounded-2xl bg-white p-8 border border-[#e5e5e0]">
+                        <div class="text-4xl mb-4">🌱</div>
+                        <h3 class="font-display text-xl font-extrabold">Electric options</h3>
+                        <p class="mt-2 text-sm text-[#565650]">Access to our EV fleet with lower operating costs and a
+                            greener footprint.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="mb-20 rounded-2xl bg-[#f8f8f5] p-8 md:p-12">
+                <div class="text-center mb-10">
+                    <p class="font-mono text-xs font-bold uppercase tracking-[.18em] text-[#6b6b66]">Get started</p>
+                    <h2 class="mt-4 font-display text-4xl font-extrabold tracking-tight md:text-5xl">Become a driver in
+                        3 steps</h2>
+                </div>
+                <div class="grid gap-8 md:grid-cols-3">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="step-number mb-4">1</div>
+                        <h3 class="font-display text-xl font-extrabold">Apply online</h3>
+                        <p class="mt-2 text-sm text-[#565650]">Fill out our quick application form with your basic
+                            details and vehicle information.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="step-number mb-4">2</div>
+                        <h3 class="font-display text-xl font-extrabold">Verification</h3>
+                        <p class="mt-2 text-sm text-[#565650]">We'll verify your documents and run a background check.
+                            Quick and hassle-free.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="step-number mb-4">3</div>
+                        <h3 class="font-display text-xl font-extrabold">Start earning</h3>
+                        <p class="mt-2 text-sm text-[#565650]">Complete a brief orientation and start accepting rides.
+                            Your journey begins!</p>
+                    </div>
+                </div>
+                <div class="mt-10 text-center">
+                    <a href="#apply"
+                        class="inline-block rounded-full bg-black px-8 py-4 font-bold text-white hover:bg-limevik hover:text-black transition-colors">Apply
+                        now →</a>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="mb-20">
+                <div class="text-center mb-12">
+                    <p class="font-mono text-xs font-bold uppercase tracking-[.18em] text-[#6b6b66]">Real stories</p>
+                    <h2 class="mt-4 font-display text-4xl font-extrabold tracking-tight md:text-5xl">What our drivers
+                        say</h2>
+                </div>
+                <div class="grid gap-6 md:grid-cols-3">
+                    <div class="testimonial-card rounded-2xl bg-white p-6 border border-[#e5e5e0]">
+                        <div class="flex items-center gap-1 text-limevik mb-3">★★★★★</div>
+                        <p class="text-sm text-[#565650]">"Vikways has given me the freedom to earn on my own terms. I
+                            can work around my family schedule and still make good money."</p>
+                        <div class="mt-4 flex items-center gap-3">
+                            <div
+                                class="h-10 w-10 rounded-full bg-limevik flex items-center justify-center font-bold text-sm">
+                                RK</div>
+                            <div>
+                                <div class="font-bold text-sm">Rahul Kumar</div>
+                                <div class="text-xs text-[#686863]">Driver since 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card rounded-2xl bg-white p-6 border border-[#e5e5e0]">
+                        <div class="flex items-center gap-1 text-limevik mb-3">★★★★★</div>
+                        <p class="text-sm text-[#565650]">"The weekly payouts are consistent and transparent. I've tried
+                            other platforms, but Vikways truly cares about its drivers."</p>
+                        <div class="mt-4 flex items-center gap-3">
+                            <div
+                                class="h-10 w-10 rounded-full bg-limevik flex items-center justify-center font-bold text-sm">
+                                PS</div>
+                            <div>
+                                <div class="font-bold text-sm">Priya Singh</div>
+                                <div class="text-xs text-[#686863]">Driver since 2023</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card rounded-2xl bg-white p-6 border border-[#e5e5e0]">
+                        <div class="flex items-center gap-1 text-limevik mb-3">★★★★★</div>
+                        <p class="text-sm text-[#565650]">"I love the flexibility. I drive in the mornings and still
+                            have time for my studies. Vikways is a game-changer for students like me."</p>
+                        <div class="mt-4 flex items-center gap-3">
+                            <div
+                                class="h-10 w-10 rounded-full bg-limevik flex items-center justify-center font-bold text-sm">
+                                AM</div>
+                            <div>
+                                <div class="font-bold text-sm">Amit Mehta</div>
+                                <div class="text-xs text-[#686863]">Driver since 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requirements -->
+            <div id="apply" class="mb-20 rounded-2xl bg-black p-8 md:p-12 text-white">
+                <div class="grid gap-8 lg:grid-cols-2">
+                    <div>
+                        <p class="font-mono text-xs font-bold uppercase tracking-[.18em] text-limevik">Apply now</p>
+                        <h2 class="mt-4 font-display text-3xl font-extrabold tracking-tight md:text-4xl">Ready to
+                            drive<br>with Vikways?</h2>
+                        <p class="mt-4 text-[#c6c6c0]">Join thousands of drivers who've found their rhythm with Vikways.
+                            Apply today and start earning.</p>
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center gap-3 text-sm"><span class="text-limevik">✓</span> Flexible
+                                hours</div>
+                            <div class="flex items-center gap-3 text-sm"><span class="text-limevik">✓</span> Weekly
+                                payouts</div>
+                            <div class="flex items-center gap-3 text-sm"><span class="text-limevik">✓</span> Insurance
+                                coverage</div>
+                            <div class="flex items-center gap-3 text-sm"><span class="text-limevik">✓</span> 24/7
+                                support</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-xl font-extrabold mb-4">Requirements</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="text-limevik mt-0.5">•</span>
+                                <span>Valid driver's license (2+ years experience)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-limevik mt-0.5">•</span>
+                                <span>Vehicle registration & insurance (for your vehicle type)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-limevik mt-0.5">•</span>
+                                <span>Clean driving record and background check</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-limevik mt-0.5">•</span>
+                                <span>Smartphone with internet connectivity</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-limevik mt-0.5">•</span>
+                                <span>Passion for providing great service</span>
+                            </li>
+                        </ul>
+                        <a href="#"
+                            class="mt-6 inline-block w-full text-center rounded-xl bg-limevik py-4 font-bold text-black hover:bg-white transition-colors">Apply
+                            now →</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="mx-auto max-w-[1380px] px-5 py-12 md:px-12">
+        <div class="flex flex-col justify-between gap-8 border-b border-[#d8d8d2] pb-10 md:flex-row">
+            <div><b class="font-display text-4xl font-extrabold tracking-tight">vikways</b>
+                <p class="mt-2 text-sm text-[#686863]">A kinder way to move through the city.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-x-12 gap-y-3 text-sm font-bold">
+                <a href="ride.html" class="hover:underline">Ride with us</a>
+                <a href="drive.html" class=" underline ">Drive with us</a>
+                <a href="index.html#safety" class="hover:underline">Safety</a>
+                <a href="aboutus.html" class="hover:underline">About us</a>
+                <a href="contactus.html" class="hover:underline">Contact</a>
+            </div>
+        </div>
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-2 text-xs text-[#686863]">
+            <span>© 2026 Vikways All Rights Reserved. Powered By VSpaze Technologies Pvt. Ltd. — Official</span>
+            <span class="flex gap-4"><a href="#" class="hover:underline">Privacy</a><a href="#"
+                    class="hover:underline">Terms</a><a href="#" class="hover:underline">Support</a></span>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        menuButton.onclick = () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('active');
+        };
+
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.onclick = () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('active');
+            };
+        });
+    </script>
+</body>
+
+</html>
